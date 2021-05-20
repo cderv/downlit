@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">downlit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -88,7 +97,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/downlit/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -114,9 +123,9 @@
     <p>Automatically link inline code</p>
     </div>
 
-    <pre class="usage"><span class='fu'>autolink</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>autolink</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>
 
-<span class='fu'>autolink_url</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span></pre>
+<span class='fu'>autolink_url</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,13 +141,34 @@
     <p>If <code>text</code> is linkable, an HTML link for <code>autolink()</code>, and or just
 the URL for <code>autolink_url()</code>. Both return <code>NA</code> if the text is not
 linkable.</p>
+    <h2 class="hasAnchor" id="options"><a class="anchor" href="#options"></a>Options</h2>
+
+    <p>downlit provides a number of options to control the details of the linking.
+They are particularly important if you want to generate "local" links.</p><ul>
+<li><p><code>downlit.package</code>: name of the current package. Determines when
+<code>topic_index</code> and <code>article_index</code></p></li>
+<li><p><code>downlit.topic_index</code> and <code>downlit.article_index</code>: named character
+vector that maps from topic/article name to path.</p></li>
+<li><p><code>downlit.rdname</code>: name of current Rd file being documented (if any);
+used to avoid self-links.</p></li>
+<li><p><code>downlit.attached</code>: character vector of currently attached R packages.</p></li>
+<li><p><code>downlit.local_packages</code>: named character vector providing relative
+paths (value) to packages (name) that can be reached with relative links
+from the target HTML document.</p></li>
+<li><p><code>downlit.topic_path</code> and <code>downlit.article_path</code>: paths to reference
+topics and articles/vignettes relative to the "current" file.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>autolink</span><span class='op'>(</span><span class='st'>"stats::median()"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "&lt;a href='https://rdrr.io/r/stats/median.html'&gt;stats::median()&lt;/a&gt;"</div><div class='input'><span class='fu'>autolink</span><span class='op'>(</span><span class='st'>"vignette('grid', package = 'grid')"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "&lt;a href='https://cran.rstudio.com/web/packages/grid/vignettes/grid.pdf'&gt;vignette('grid', package = 'grid')&lt;/a&gt;"</div><div class='input'>
-<span class='fu'>autolink_url</span><span class='op'>(</span><span class='st'>"stats::median()"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "https://rdrr.io/r/stats/median.html"</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>autolink</span><span class='op'>(</span><span class='st'>"stats::median()"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "&lt;a href='https://rdrr.io/r/stats/median.html'&gt;stats::median()&lt;/a&gt;"</span>
+<span class='r-in'><span class='fu'>autolink</span><span class='op'>(</span><span class='st'>"vignette('grid', package = 'grid')"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "&lt;a href='https://cran.rstudio.com/web/packages/grid/vignettes/grid.pdf'&gt;vignette('grid', package = 'grid')&lt;/a&gt;"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>autolink_url</span><span class='op'>(</span><span class='st'>"stats::median()"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "https://rdrr.io/r/stats/median.html"</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -150,11 +180,11 @@ linkable.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://hadley.nz'>Hadley Wickham</a>.</p>
+  <p><p>Developed by <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -162,6 +192,8 @@ linkable.</p>
 
   
 
+
+  
 
   </body>
 </html>

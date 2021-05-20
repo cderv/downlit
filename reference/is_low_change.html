@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Automatically link references and articles in an HTML page — downlit_html • downlit</title>
+<title>Compare two recorded plots — is_low_change • downlit</title>
 
 
 <!-- jquery -->
@@ -39,18 +39,10 @@
 
 
 
-<meta property="og:title" content="Automatically link references and articles in an HTML page — downlit_html" />
-<meta property="og:description" content="The autolinker has two components built around two XPath expressions:
-Multiline code blocks are identified by &amp;lt;pre&amp;gt; tags with
-class sourceCode and r, and are processed with highlight().
-Inline code is identified by &amp;lt;code&amp;gt; tags that contain only text,
-don't have a header tag (e.g. &amp;lt;h1&amp;gt;) or &amp;lt;a&amp;gt; as an ancestor,
-and are porcessed processed with autolink().
+<meta property="og:title" content="Compare two recorded plots — is_low_change" />
+<meta property="og:description" content="Compare two recorded plots" />
 
 
-Use downlit_html() to process an .html file on disk;
-use downlit_xml_node() to process an xml_node as part of a larger
-pipeline." />
 
 
 
@@ -66,9 +58,16 @@ pipeline." />
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,26 +81,23 @@ pipeline." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">downlit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/downlit/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -118,45 +114,29 @@ pipeline." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Automatically link references and articles in an HTML page</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/downlit/blob/master/R/downlit-html.R'><code>R/downlit-html.R</code></a></small>
-    <div class="hidden name"><code>downlit_html.Rd</code></div>
+    <h1>Compare two recorded plots</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/downlit/blob/master/R/evaluate.R'><code>R/evaluate.R</code></a></small>
+    <div class="hidden name"><code>is_low_change.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The autolinker has two components built around two XPath expressions:</p><ul>
-<li><p>Multiline code blocks are identified by <code>&lt;pre&gt;</code> tags with
-class <code>sourceCode</code> and <code>r</code>, and are processed with <code><a href='highlight.html'>highlight()</a></code>.</p></li>
-<li><p>Inline code is identified by <code>&lt;code&gt;</code> tags that contain only text,
-don't have a header tag (e.g. <code>&lt;h1&gt;</code>) or <code>&lt;a&gt;</code> as an ancestor,
-and are porcessed processed with <code><a href='autolink.html'>autolink()</a></code>.</p></li>
-</ul>
-
-<p>Use <code>downlit_html()</code> to process an <code>.html</code> file on disk;
-use <code>downlit_xml_node()</code> to process an <code>xml_node</code> as part of a larger
-pipeline.</p>
+    <p>Compare two recorded plots</p>
     </div>
 
-    <pre class="usage"><span class='fu'>downlit_html</span>(<span class='no'>input_path</span>, <span class='no'>output_path</span>)
-
-<span class='fu'>downlit_xml_node</span>(<span class='no'>node</span>)</pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>is_low_change</span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>input_path, output_path</th>
-      <td><p>Input and output paths for HTML file</p></td>
-    </tr>
-    <tr>
-      <th>node</th>
-      <td><p>An <code>xml2::xml_node</code></p></td>
+      <th>p1, p2</th>
+      <td><p>Plot results</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisibly returns <code>output_path</code>.</p>
+    <p>Logical value indicating whether <code>p2</code> is a low-level update of <code>p1</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -169,11 +149,11 @@ pipeline.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://hadley.nz'>Hadley Wickham</a>.</p>
+  <p><p>Developed by <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -181,6 +161,8 @@ pipeline.</p>
 
   
 
+
+  
 
   </body>
 </html>

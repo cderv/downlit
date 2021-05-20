@@ -42,7 +42,8 @@
 <meta property="og:title" content="Syntax highlight and link an HTML page — downlit_html_path" />
 <meta property="og:description" content="
 
-Code blocks, identified by &amp;lt;pre&amp;gt; tags with class sourceCode and r,
+Code blocks, identified by &amp;lt;pre&amp;gt; tags with class sourceCode r
+or any &amp;lt;pre&amp;gt; tag inside of &amp;lt;div class='downlit'&amp;gt;, are
 processed with highlight().
 Inline code, identified by &amp;lt;code&amp;gt; tags that contain only text
 (and don't have a header tag (e.g. &amp;lt;h1&amp;gt;) or &amp;lt;a&amp;gt; as an ancestor)
@@ -52,6 +53,8 @@ are processed processed with autolink().
 Use downlit_html_path() to process an .html file on disk;
 use downlit_html_node() to process an in-memory xml_node as part of a
 larger pipeline." />
+
+
 
 
 
@@ -67,9 +70,16 @@ larger pipeline." />
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -83,7 +93,7 @@ larger pipeline." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">downlit</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
       </span>
     </div>
 
@@ -99,7 +109,7 @@ larger pipeline." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/downlit/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,7 +134,8 @@ larger pipeline." />
     <div class="ref-description">
     
 <ul>
-<li><p>Code blocks, identified by <code>&lt;pre&gt;</code> tags with class <code>sourceCode</code> and <code>r</code>,
+<li><p>Code blocks, identified by <code>&lt;pre&gt;</code> tags with class <code>sourceCode r</code>
+or any <code>&lt;pre&gt;</code> tag inside of <code>&lt;div class='downlit'&gt;</code>, are
 processed with <code><a href='highlight.html'>highlight()</a></code>.</p></li>
 <li><p>Inline code, identified by <code>&lt;code&gt;</code> tags that contain only text
 (and don't have a header tag (e.g. <code>&lt;h1&gt;</code>) or <code>&lt;a&gt;</code> as an ancestor)
@@ -136,9 +147,9 @@ use <code>downlit_html_node()</code> to process an in-memory <code>xml_node</cod
 larger pipeline.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>downlit_html_path</span><span class='op'>(</span><span class='va'>in_path</span>, <span class='va'>out_path</span>, classes <span class='op'>=</span> <span class='fu'><a href='highlight.html'>classes_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>downlit_html_path</span><span class='op'>(</span><span class='va'>in_path</span>, <span class='va'>out_path</span>, classes <span class='op'>=</span> <span class='fu'><a href='highlight.html'>classes_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>downlit_html_node</span><span class='op'>(</span><span class='va'>x</span>, classes <span class='op'>=</span> <span class='fu'><a href='highlight.html'>classes_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>downlit_html_node</span><span class='op'>(</span><span class='va'>x</span>, classes <span class='op'>=</span> <span class='fu'><a href='highlight.html'>classes_pandoc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,17 +177,19 @@ can use existing themes.</p></td>
 <code>downlit_html_node()</code> modifies <code>x</code> in place and returns nothing.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>node</span> <span class='op'>&lt;-</span> <span class='fu'>xml2</span><span class='fu'>::</span><span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_xml</a></span><span class='op'>(</span><span class='st'>"&lt;p&gt;&lt;code&gt;base::t()&lt;/code&gt;&lt;/p&gt;"</span><span class='op'>)</span>
-<span class='va'>node</span>
-</div><div class='output co'>#&gt; {xml_document}
-#&gt; &lt;p&gt;
-#&gt; [1] &lt;code&gt;base::t()&lt;/code&gt;</div><div class='input'>
-<span class='co'># node is modified in place</span>
-<span class='fu'>downlit_html_node</span><span class='op'>(</span><span class='va'>node</span><span class='op'>)</span>
-<span class='va'>node</span>
-</div><div class='output co'>#&gt; {xml_document}
-#&gt; &lt;p&gt;
-#&gt; [1] &lt;code&gt;\n  &lt;a href="https://rdrr.io/r/base/t.html"&gt;base::t()&lt;/a&gt;\n&lt;/code&gt;</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>node</span> <span class='op'>&lt;-</span> <span class='fu'>xml2</span><span class='fu'>::</span><span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_xml</a></span><span class='op'>(</span><span class='st'>"&lt;p&gt;&lt;code&gt;base::t()&lt;/code&gt;&lt;/p&gt;"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>node</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> {xml_document}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;p&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] &lt;code&gt;base::t()&lt;/code&gt;</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># node is modified in place</span></span>
+<span class='r-in'><span class='fu'>downlit_html_node</span><span class='op'>(</span><span class='va'>node</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>node</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> {xml_document}</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;p&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] &lt;code&gt;\n  &lt;a href="https://rdrr.io/r/base/t.html"&gt;base::t()&lt;/a&gt;\n&lt;/code&gt;</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -188,11 +201,11 @@ can use existing themes.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://hadley.nz'>Hadley Wickham</a>.</p>
+  <p><p>Developed by <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -200,6 +213,8 @@ can use existing themes.</p></td>
 
   
 
+
+  
 
   </body>
 </html>
